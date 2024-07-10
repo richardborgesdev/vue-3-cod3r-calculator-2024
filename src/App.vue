@@ -1,12 +1,12 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import CalculatorPage from './main/CalculatorPage.vue'
 </script>
 
 <template>
   <h1>
-    Olá Vue!
+    Calculadora
   </h1>
+  <CalculatorPage />
 </template>
 
 <style></style>
