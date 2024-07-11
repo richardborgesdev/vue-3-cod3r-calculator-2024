@@ -6,7 +6,23 @@ import ButtonComp from '../components/ButtonComp.vue';
 <template>
   <div class="calculator">
     <DisplayComp />
-    <ButtonComp />
+    <ButtonComp label="AC" triple />
+    <ButtonComp label="/" operation />
+    <ButtonComp label="7" />
+    <ButtonComp label="8" />
+    <ButtonComp label="9" />
+    <ButtonComp label="*" operation />
+    <ButtonComp label="4" />
+    <ButtonComp label="5" />
+    <ButtonComp label="6" />
+    <ButtonComp label="-" operation />
+    <ButtonComp label="1" />
+    <ButtonComp label="2" />
+    <ButtonComp label="3" />
+    <ButtonComp label="+" operation />
+    <ButtonComp label="0" double />
+    <ButtonComp label="." />
+    <ButtonComp label="=" operation />
   </div>
 </template>
 
