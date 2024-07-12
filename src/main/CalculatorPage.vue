@@ -5,7 +5,7 @@ import ButtonComp from '../components/ButtonComp.vue';
 
 <template>
   <div class="calculator">
-    <DisplayComp />
+    <DisplayComp value="1000" />
     <ButtonComp label="AC" triple />
     <ButtonComp label="/" operation />
     <ButtonComp label="7" />
