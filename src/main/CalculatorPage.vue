@@ -1,28 +1,40 @@
 <script setup>
 import DisplayComp from '../components/DisplayComp.vue';
 import ButtonComp from '../components/ButtonComp.vue';
+
+const clearMemory = () => {
+  console.log('limpar memória');
+}
+
+const setOperation = (operation) => {
+  console.log('operação ' + operation);
+}
+
+const addDigit = (n) => {
+  console.log('digito ' + n);
+}
 </script>
 
 <template>
   <div class="calculator">
     <DisplayComp value="1000" />
-    <ButtonComp label="AC" triple />
-    <ButtonComp label="/" operation />
-    <ButtonComp label="7" />
-    <ButtonComp label="8" />
-    <ButtonComp label="9" />
-    <ButtonComp label="*" operation />
-    <ButtonComp label="4" />
-    <ButtonComp label="5" />
-    <ButtonComp label="6" />
-    <ButtonComp label="-" operation />
-    <ButtonComp label="1" />
-    <ButtonComp label="2" />
-    <ButtonComp label="3" />
-    <ButtonComp label="+" operation />
-    <ButtonComp label="0" double />
-    <ButtonComp label="." />
-    <ButtonComp label="=" operation />
+    <ButtonComp label="AC" triple @onCalcButtonClick="clearMemory" />
+    <ButtonComp label="/" operation @onCalcButtonClick="setOperation" />
+    <ButtonComp label="7" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="8" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="9" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="*" operation @onCalcButtonClick="setOperation" />
+    <ButtonComp label="4" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="5" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="6" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="-" operation @onCalcButtonClick="setOperation" />
+    <ButtonComp label="1" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="2" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="3" @onCalcButtonClick="addDigit" />
+    <ButtonComp label="+" operation @onCalcButtonClick="setOperation" />
+    <ButtonComp label="0" double @onCalcButtonClick="addDigit" />
+    <ButtonComp label="." @onCalcButtonClick="addDigit" />
+    <ButtonComp label="=" operation @onCalcButtonClick="setOperation" />
   </div>
 </template>
 
