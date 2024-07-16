@@ -1,23 +1,64 @@
 <script setup>
+import { ref } from 'vue';
 import DisplayComp from '../components/DisplayComp.vue';
 import ButtonComp from '../components/ButtonComp.vue';
 
+const emit = defineEmits(['onError'])
+
+const displayValue = ref("0");
+const clearDisplay = ref(false);
+const operation = ref(null);
+const values = ref([0, 0]);
+const current = ref(0);
+
 const clearMemory = () => {
-  console.log('limpar memória');
+  displayValue.value = "0";
+  clearDisplay.value = false;
+  operation.value = null;
+  values.value = [0, 0];
+  current.value = 0;
 }
 
-const setOperation = (operation) => {
-  console.log('operação ' + operation);
+const setOperation = (operationDigit) => {
+  if (current.value === 0) {
+    operation.value = operationDigit;
+    current.value = 1;
+    clearDisplay.value = true;
+  } else {
+    const equals = operationDigit === "=";
+    const currentOperation = operation.value;
+
+    try {
+      values.value[0] = eval(`${values.value[0]} ${currentOperation} ${values.value[1]}`);
+    } catch (error) {
+      emit('onError', error);
+    }
+
+    values.value[1] = 0;
+    displayValue.value = values.value[0];
+    operation.value = equals ? null : operation;
+    current.value = equals ? 0 : 1;
+    clearDisplay.value = !equals;
+  }
 }
 
 const addDigit = (n) => {
-  console.log('digito ' + n);
+  if (n === "." && displayValue.value.includes(".")) {
+    return;
+  }
+
+  const shouldClearDisplay = displayValue.value === "0" || clearDisplay.value;
+  const currentValue = shouldClearDisplay ? "" : displayValue.value;
+  displayValue.value = currentValue + n;
+
+  clearDisplay.value = false;
+  values.value[current.value] = displayValue.value;
 }
 </script>
 
 <template>
   <div class="calculator">
-    <DisplayComp value="1000" />
+    <DisplayComp :value="displayValue" />
     <ButtonComp label="AC" triple @onCalcButtonClick="clearMemory" />
     <ButtonComp label="/" operation @onCalcButtonClick="setOperation" />
     <ButtonComp label="7" @onCalcButtonClick="addDigit" />
